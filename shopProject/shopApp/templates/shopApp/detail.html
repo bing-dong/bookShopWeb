@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>详细信息</title>
+    <meta charset="UTF-8">
+    <style>
+        .div-a{ float:left;width:49%;border:1px solid #F00} 
+        .div-b{ float:left;width:49%;border:1px solid #000} 
+    </style>
+</head>
+<body>
+    <ul>
+        <li>{{book_detail.name}}</li>
+        <li>{{book_detail.author}}</li>
+        <li>{{book_detail.price}}</li>
+        <li>{{book_detail.pic.url}}</li>
+        <img src="{{ book_detail.pic.url }}" width="150px" height="150" alt="My image">
+
+    </ul>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>用户注册</title>
+    <meta charset="UTF-8">
+    {% load staticfiles %}
+    <script src="{% static 'js/jquery-3.4.1.js' %}"></script>
+    <!-- <script src="jquery-3.4.1.js"></script> -->
+    <script src="{% static 'js/regist.js' %}"></script>
+    <style>
+        body
+        {
+            background-color:#b0c4de;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="position:relative;left:500px;top:100px;width:800px;height:50px">
+        <form action="/regist_post" method="post">
+                {% csrf_token %}
+            用户：
+            <input type="text" name="user">
+            <span style="font-size:12px;" id="span_in"></span>
+            <br />
+            <br />
+            密码：
+            <input type="password" name="password">
+            <span style="font-size:12px;" id="pwstrength">密码长度需大于6位，且含有字母和数字</span>
+            <br />
+            <br />
+            <input type="submit" style="position:relative;left:110px;" value="注册">
+        </form>
+    </div>
+</body>
+</html>

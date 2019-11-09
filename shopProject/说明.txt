@@ -1,0 +1,23 @@
+html css javascript jquery ajax
+python mysql
+
+{{变量}}  {%代码段%}
+
+分类：文学、历史、励志、童书   literature，history，success，child
+书：封面 名称 作者 价钱  Book: name,author,pic,price,category
+用户：User:name,password,cart,history
+amount
+
+图书购物网
+
+图书购物网后台管理
+
+
+
+---------------------------
+python manage.py makemigrations
+python manage.py migrate 
+python manage.py runserver 127.0.0.1:8000
+
+python manage.py createsuperuser
+超级用户：admin admin
