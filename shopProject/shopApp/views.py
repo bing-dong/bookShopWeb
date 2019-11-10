@@ -267,3 +267,13 @@ def search(request):
             book.append(item)
         
     return render(request,'shopApp/index.html',{'book_list':book})
+
+# 删除购物车条目
+def cart_del(request):
+    book_name = request.GET.get('book_name')
+    cart_all = Cart.objects.all()
+    for book in cart_all:
+        if book.book == book_name:
+            book.delete()
+            break
+    return JsonResponse({'state':'ok'})

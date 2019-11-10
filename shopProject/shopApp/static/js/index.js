@@ -1,6 +1,5 @@
 $(document).ready(function(){
     //判断用户是否登陆成功
-
     $.ajax({
         type: "get",
         url:"verifyLogin",

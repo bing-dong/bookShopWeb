@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>网上书店</title>
+    <title>图书商城</title>
     {% load staticfiles %}
     <script src="{% static 'js/jquery-3.4.1.js' %}"></script>
     <script src="{% static 'js/index.js' %}"></script>
@@ -57,7 +57,7 @@
             {% for book in book_list%}
             <div class="col-xs-6 col-md-3">
               <a href="/{{book.id}}/" class="thumbnail">
-                <img src="{{book.pic.url}}" alt="...">
+                <img src="{{book.pic.url}}" alt="...">{{book.name}}
               </a>
             </div>
             {% endfor %}
