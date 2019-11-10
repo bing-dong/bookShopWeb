@@ -224,17 +224,46 @@ def history(request):
     return render(request,'shopApp/history.html',{'history':history,'book':book})
 
 def literature_kind(request):
-    content = {}
-    return render(request,'shopApp/index.html',content)
+    book = []
+    book_all = Book.objects.all()
+    for item in book_all:
+        if item.category == 'literature':
+            book.append(item)
+    return render(request,'shopApp/index.html',{'book_list':book})
 
 def success_kind(request):
-    content = {}
-    return render(request,'shopApp/index.html',content)
+    book = []
+    book_all = Book.objects.all()
+    for item in book_all:
+        if item.category == 'success':
+            book.append(item)
+    return render(request,'shopApp/index.html',{'book_list':book})
 
 def history_kind(request):
-    content = {}
-    return render(request,'shopApp/index.html',content)
+    book = []
+    book_all = Book.objects.all()
+    for item in book_all:
+        if item.category == 'history':
+            book.append(item)
+    return render(request,'shopApp/index.html',{'book_list':book})
 
 def child_kind(request):
-    content = {}
-    return render(request,'shopApp/index.html',content)
+    book = []
+    book_all = Book.objects.all()
+    for item in book_all:
+        if item.category == 'child':
+            book.append(item)
+    return render(request,'shopApp/index.html',{'book_list':book})
+
+def search(request):
+    book_name = ''
+    if request.POST:
+        book_name = request.POST.get('book_name')
+    
+    book = []
+    book_all = Book.objects.all()
+    for item in book_all:
+        if item.name == book_name:
+            book.append(item)
+        
+    return render(request,'shopApp/index.html',{'book_list':book})

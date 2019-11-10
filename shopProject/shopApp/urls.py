@@ -22,7 +22,7 @@ urlpatterns = [
     path('history_kind',history_kind),
     path('child_kind',child_kind),
     path('add_cart',add_cart),
-    
+    path('search',search),
 
     # 加载media中的图片
     url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT})
