@@ -3,19 +3,47 @@
 <head>
     <title>详细信息</title>
     <meta charset="UTF-8">
+    {% load staticfiles %}
+    <script src="{% static 'js/jquery-3.4.1.js' %}"></script>
+    <script src="{% static 'js/detail.js' %}"></script>
     <style>
-        .div-a{ float:left;width:49%;border:1px solid #F00} 
-        .div-b{ float:left;width:49%;border:1px solid #000} 
+        body
+        {
+            background-color:#b0c4de;
+        }
+        #left {
+            float:left;width:49%
+        }
+        #right {
+            float:left;width:49%;
+        }
     </style>
 </head>
 <body>
-    <ul>
-        <li>{{book_detail.name}}</li>
-        <li>{{book_detail.author}}</li>
-        <li>{{book_detail.price}}</li>
-        <li>{{book_detail.pic.url}}</li>
-        <img src="{{ book_detail.pic.url }}" width="150px" height="150" alt="My image">
+    <div id="container">
+        <div id="left">
+            <img src="{{ book_detail.pic.url }}" width="280px" height="280" alt="My image">
 
-    </ul>
+            <ul>
+                <li>书名：{{book_detail.name}}</li>
+                <li>作者：{{book_detail.author}}</li>
+                <li>价格：{{book_detail.price}}</li>
+            </ul>
+        </div>
+
+        <form action="/add_cart" method="post">
+            {% csrf_token %}
+            <div id="right">
+                <input type="text" name="book_name" value="{{book_detail.name}}">
+                <br> <br>
+                购买数量：
+                <input type="number" value="1" min="1"  max="10" style="width:35px" name="book_num">
+                <br> <br>
+                <input type="submit" value="加入购物车">
+            </div>
+        </form>
+
+    </div>
+
 </body>
 </html>

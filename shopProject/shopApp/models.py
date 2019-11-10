@@ -6,9 +6,6 @@ from django.db import models
 class User(models.Model):
     name = models.CharField(max_length=30)
     password = models.CharField(max_length=30)
-    # login_flag = models.BooleanField()
-    # history_Permission = models.BooleanField()
-    # cart_Permission = models.BooleanField()
 
     def __str__(self):
         return self.name
@@ -16,7 +13,6 @@ class User(models.Model):
 class Book(models.Model):
     name = models.CharField(max_length=128)
     author = models.CharField(max_length=50)
-    # pic = models.CharField(max_length=128)
     pic = models.ImageField(upload_to='img')
     price = models.IntegerField()
     category = models.CharField(max_length=20)

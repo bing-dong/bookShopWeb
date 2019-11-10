@@ -120,12 +120,46 @@ def logout(request):
         del request.session['userpw']
     return HttpResponseRedirect('/')
 
+
+# 加入购物车
+def add_cart(request):
+    request.encoding='utf-8'
+
+    book_name = ''
+    book_num = 1
+    username = ''
+
+    if request.POST:
+        book_name = request.POST.get('book_name')
+        book_num = request.POST.get('book_num')
+    if 'username' in request.session:
+        username = request.session.get('username')
+    else:
+        return HttpResponse("请登录<br /> <a href = '/login'> 登陆 </a>")
+
+    cart_book = Cart.objects.all()
+
+    already_in = 0
+    for item in cart_book:
+        if item.user == username and item.book == book_name:
+            item.count = item.count + int(book_num)
+            item.save()
+            already_in = 1
+    if not already_in:
+        book_add = Cart()
+        book_add.user = username
+        book_add.book = book_name
+        book_add.count = book_num
+        book_add.save()
+
+    return HttpResponseRedirect('/cart')
+    
+# 购物车,列出购物车中的所有商品
+def cart(request):
+    return HttpResponse("加入成功")
+
 # 用户历史
 def history(request):
-    pass
-
-# 购物车
-def cart(request):
     pass
 
 def literature_kind(request):
