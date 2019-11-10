@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>详细信息</title>
+    <meta charset="UTF-8">
+    {% load staticfiles %}
+    <script src="{% static 'js/jquery-3.4.1.js' %}"></script>
+    <script src="{% static 'js/detail.js' %}"></script>
+     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+     <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+ 
+    <style>
+
+    </style>
+</head>
+<body>
+    <div style="position:absolute; left: 100px; right: 100px; top: 50px;">
+        用户浏览记录：
+        <br> <br>
+        <ul class="list-group">
+            {% for item in history %}
+                {% for b in book %}
+                    {% if b.name == item %}
+                    <li class="list-group-item"><a href="/{{b.id}}/">{{item}}</a></li>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </ul>
+
+    </div>
+</body>
+</html>

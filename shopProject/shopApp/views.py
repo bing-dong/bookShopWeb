@@ -9,10 +9,25 @@ def index(request):
     content = {'book_list':book_list}
     return render(request,'shopApp/index.html',content)
 
+# 商品详情
 def detail(request,id):
     book_detail = Book.objects.get(id=id)
     book_path = book_detail.pic.path.split('\\')[-1]
     content = {'book_detail':book_detail,'book_path':book_path}
+
+    # 记录用户历史,当前有用户登陆则记录，否则不记录
+    if 'username' in request.session:
+        username = request.session.get('username')
+
+        history = History.objects.all()
+        for usr_history in history:
+            if usr_history.user == username and book_detail.name == usr_history.book:
+                usr_history.delete()
+        history_add = History()
+        history_add.user = username
+        history_add.book = book_detail.name
+        history_add.save()
+
     return render(request,'shopApp/detail.html',content)
 
 def regist(request):
@@ -156,11 +171,57 @@ def add_cart(request):
     
 # 购物车,列出购物车中的所有商品
 def cart(request):
-    return HttpResponse("加入成功")
+    username = ''
+    if 'username' in request.session:
+        username = request.session.get('username')
+    else:
+        return HttpResponse("请登录<br /> <a href = '/login'> 登陆 </a>")
+
+    # content = {'book_name':[],'book_num':[]}
+    # 加入购物车中书的名字和数量
+    content = {}
+    # 每本书的价格
+    price = {}
+    # 总金额
+    price_sum = 0
+    cart_book = Cart.objects.all()
+    book_all = Book.objects.all()
+
+    for item in cart_book:
+        if username == item.user:
+            # content['book_name'].append(item.book)
+            # content['book_num'].append(item.count)
+            content[item.book] = item.count
+
+            for book in book_all:
+                if book.name == item.book:
+                    price[item.book] = book.price
+                    price_sum = price_sum + int(book.price)*int(item.count)
+                    break
+
+    return render(request,'shopApp/cart.html',{'content':content,'price':price,'price_sum':price_sum})
 
 # 用户历史
 def history(request):
-    pass
+    username = ''
+    if 'username' in request.session:
+        username = request.session.get('username')
+    else:
+        return HttpResponse("请登录<br /> <a href = '/login'> 登陆 </a>")
+
+    history = []
+    book = []
+    history_all = History.objects.all()
+    book_all = Book.objects.all()
+
+    for usr_history in history_all:
+        if username == usr_history.user:
+            history.insert(0,usr_history.book)
+            for book_i in book_all:
+                if book_i.name == usr_history.book:
+                    book.insert(0,book_i)
+
+    return render(request,'shopApp/history.html',{'history':history,'book':book})
 
 def literature_kind(request):
     content = {}
