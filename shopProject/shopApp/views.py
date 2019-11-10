@@ -229,7 +229,7 @@ def literature_kind(request):
     for item in book_all:
         if item.category == 'literature':
             book.append(item)
-    return render(request,'shopApp/index.html',{'book_list':book})
+    return render(request,'shopApp/index.html',{'book_list':book,'class':"文学"})
 
 def success_kind(request):
     book = []
@@ -237,7 +237,7 @@ def success_kind(request):
     for item in book_all:
         if item.category == 'success':
             book.append(item)
-    return render(request,'shopApp/index.html',{'book_list':book})
+    return render(request,'shopApp/index.html',{'book_list':book,'class':"励志"})
 
 def history_kind(request):
     book = []
@@ -245,7 +245,7 @@ def history_kind(request):
     for item in book_all:
         if item.category == 'history':
             book.append(item)
-    return render(request,'shopApp/index.html',{'book_list':book})
+    return render(request,'shopApp/index.html',{'book_list':book,'class':"历史"})
 
 def child_kind(request):
     book = []
@@ -253,7 +253,7 @@ def child_kind(request):
     for item in book_all:
         if item.category == 'child':
             book.append(item)
-    return render(request,'shopApp/index.html',{'book_list':book})
+    return render(request,'shopApp/index.html',{'book_list':book,'class':'儿童'})
 
 def search(request):
     book_name = ''

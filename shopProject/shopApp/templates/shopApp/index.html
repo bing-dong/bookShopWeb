@@ -24,12 +24,13 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">分类 <span class="caret"></span></a>
+                    <!-- 分类标签显示 -->
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% if class == "文学" or class == "励志" or class == "历史" or class == "儿童" %} {{class}} {% else %} 分类 {% endif %} <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="/literature_kind">文学</a></li>
-                    <li><a href="/success_kind">励志</a></li>
-                    <li><a href="/history_kind">历史</a></li>
-                    <li><a href="/child_kind">儿童</a></li>
+                    <li><a id="a_literature" href="/literature_kind">文学</a></li>
+                    <li><a id="a_success" href="/success_kind">励志</a></li>
+                    <li><a id="a_history" href="/history_kind">历史</a></li>
+                    <li><a id="a_child" href="/child_kind">儿童</a></li>
                 </ul>
                 </li>
             </ul>

@@ -21,6 +21,11 @@ $(document).ready(function(){
             alert("ajax配置有错，请检查url与type是否正确");
         }
     });
-    
+
+    // // 点击下拉菜单时显示子菜单名称
+    // $("#a_child").click(function(){
+    //     $(".dropdown-toggle").text("儿童");
+    // });
+
 });
 
